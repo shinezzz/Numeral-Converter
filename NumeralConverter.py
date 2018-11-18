@@ -5,7 +5,7 @@ from PyQt5.QtPrintSupport import *
 
 import os
 import sys
-from MainWindow import Ui_MainWindow
+# from MainWindow import Ui_MainWindow
 
 # Calculator state.
 
