@@ -30,17 +30,17 @@ class MainWindow(QMainWindow):
         button = QPushButton("10to2", self)
         button.setToolTip("10进制转化为2进制")
         button.move(100, 70)
-        button.clicked.connect(self.on_click)
+        button.clicked.connect(self.ten2two)
 
         button = QPushButton("10to8", self)
         button.setToolTip("10进制转化为8进制")
         button.move(100, 120)
-        button.clicked.connect(self.on_click)
+        button.clicked.connect(self.ten2eight)
 
         button = QPushButton("10to16", self)
         button.setToolTip("10进制转化为16进制")
         button.move(100, 170)
-        button.clicked.connect(self.on_click)
+        button.clicked.connect(self.ten2sixteen)
 
         #creat a input box
         self.textbox = QLineEdit(self)
@@ -51,11 +51,29 @@ class MainWindow(QMainWindow):
 
         self.show()
     #TODO
-    def on_click(self):
+    def ten2two(self):
         print("PyQt5 button click")
-        # textboxValue = self.textbox.text()
+        textboxValue = self.textbox.text()
+        value = bin(int(textboxValue))
+        print(textboxValue)
+        QMessageBox.question(self, "10进制转化为2进制:",'converter:'+ value,
+                             QMessageBox.Ok, QMessageBox.Ok)
         self.textbox.setText('')
-
+    def ten2eight(self):
+        print("PyQt5 button click")
+        textboxValue = self.textbox.text()
+        value = oct(int(textboxValue))
+        print(textboxValue)
+        QMessageBox.question(self, "10进制转化为8进制:",'converter:'+ value,
+                             QMessageBox.Ok, QMessageBox.Ok)
+        self.textbox.setText('')
+    def ten2sixteen(self):
+        print("button click")
+        textboxValue = self.textbox.text()
+        value = hex(int(textboxValue))
+        QMessageBox.question(self, "10进制转化为16进制", 'converter:' + value,
+                             QMessageBox.Ok, QMessageBox.Ok)
+        self.textbox.setText('')
 
 if __name__ == '__main__':
 
