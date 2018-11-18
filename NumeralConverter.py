@@ -5,6 +5,9 @@ from PyQt5.QtPrintSupport import *
 
 import os
 import sys
+from MainWindow import Ui_MainWindow
+
+# Calculator state.
 
 
 class MainWindow(QMainWindow):
@@ -12,35 +15,55 @@ class MainWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
 
-        layout = QVBoxLayout()
-        self.editor = QPlainTextEdit()  # Could also use a QTextEdit and set self.editor.setAcceptRichText(False)
+        # self.centralWidget = QtWidgets.QWidget(MainWindow)
+        self.title = 'PyQt5 textbox'
+        self.left = 200
+        self.top = 200
+        self.width = 320
+        self.height = 300
+        # self.setupUi(self)
+        # self.retranslateUi(MainWindow)
+        self.setGeometry(self.left, self.top, self.width, self.height)
 
 
-        # # Setup the QTextEdit editor configuration
-        # fixedfont = QFontDatabase.systemFont(QFontDatabase.FixedFont)
-        # fixedfont.setPointSize(24)
-        # self.editor.setFont(fixedfont)
+        # creat a button
+        button = QPushButton("10to2", self)
+        button.setToolTip("10进制转化为2进制")
+        button.move(100, 70)
+        button.clicked.connect(self.on_click)
 
-        # self.path holds the path of the currently open file.
-        # If none, we haven't got a file open yet (or creating new).
-        # self.path = None
+        button = QPushButton("10to8", self)
+        button.setToolTip("10进制转化为8进制")
+        button.move(100, 120)
+        button.clicked.connect(self.on_click)
 
-        layout.addWidget(self.editor)
+        button = QPushButton("10to16", self)
+        button.setToolTip("10进制转化为16进制")
+        button.move(100, 170)
+        button.clicked.connect(self.on_click)
 
-        # container = QWidget()
-        # container.setLayout(layout)
-        # self.setCentralWidget(container)
-        #
-        # self.status = QStatusBar()
-        # self.setStatusBar(self.status)
+        #creat a input box
+        self.textbox = QLineEdit(self)
+        self.textbox.move(20, 20)
+        self.textbox.resize(280, 40)
+
 
 
         self.show()
+    #TODO
+    def on_click(self):
+        print("PyQt5 button click")
+        # textboxValue = self.textbox.text()
+        self.textbox.setText('')
+
 
 if __name__ == '__main__':
 
-    app = QApplication(sys.argv)
+    app = QApplication([])
     app.setApplicationName("NumeralConverter")
+    # app.height(200)
+    # app.width(200)
 
     window = MainWindow()
+
     app.exec_()
